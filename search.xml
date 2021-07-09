@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>SharpernerByPass火绒</title>
+      <link href="posts/47067.html"/>
+      <url>posts/47067.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h1><blockquote><p>前些天 闲来无事在公众号 找到一篇免杀文章<br>使用工具 Sharperner 免杀绕过 火绒</p><p>于是第一次尝试免杀 踩了不少坑。。</p></blockquote><hr><h1 id="Download"><a href="#Download" class="headerlink" title="Download"></a>Download</h1><blockquote><p>Download 完成之后进入目录  Sharperner-main\Sharperner\obj\Release</p><p>找到  Sharperner.exe =&gt;用来免杀的exe</p><p>shift 加 右击空白处 在 powershell 中打开</p></blockquote><hr><h1 id="无免杀测试"><a href="#无免杀测试" class="headerlink" title="无免杀测试"></a>无免杀测试</h1><blockquote><p>打开cobalt strike 先生成一个没免杀的可执行Backdoor<br><img src="/images/categories-plugins/Bypassshengchengwumianshadexe.png" alt="avatar"> </p></blockquote><blockquote><p>设置好监听器：服务端的IP和监听端口<br>以及 payload 如果是x64操作系统就勾选 x64的框    否则可能 生成的 EXE无法连接到服务端<br><img src="/images/categories-plugins/Bypassshengwumianshachengshezhi.png" alt="avatar"> </p></blockquote><blockquote><p>然后点击 generate（生成）  可以看到生成瞬间就被火绒kill了<br><img src="/images/categories-plugins/Bypasshuorongshengchengbeikill.png" alt="avatar"> </p></blockquote><hr><h1 id="生成C语言的shellcode"><a href="#生成C语言的shellcode" class="headerlink" title="生成C语言的shellcode"></a>生成C语言的shellcode</h1><blockquote><p>使用cobalt strike 生成  Payload 测试目标如果是x64操作系统就勾选 x64  否则可能 生成的 shellcode 无法连接到服务端<br><img src="/images/categories-plugins/Bypassshengchengshellcode.png" alt="avatar"> </p><p>选择好监听器 输出类型为C语言的shell code 本机为 64位操作系统 勾选x64框<br><img src="/images/categories-plugins/ByPasssshengchengcshellcode.png" alt="avatar"> </p><p>保存成功<br><img src="/images/categories-plugins/Bypasscshellcodebaocunchenggong.png" alt="avatar"> </p></blockquote><blockquote><p>打开目录 我们 把 它丢到 与 Sharperner 同一级目录中<br><img src="/images/categories-plugins/Bypassdiudaotongyijimuluzhong.png" alt="avatar"> </p></blockquote><blockquote><p>运行工具 给出了使用方法<br><img src="/images/categories-plugins/Bypassgeichufangfa.png" alt="avatar"> </p><p>我们把刚刚生成的shellcode 转变成base编码 丢到 test1.txt中</p><p><img src="/images/categories-plugins/Bypassshellcodebianweibasediudaotxt.png" alt="avatar"> </p></blockquote><blockquote><p>运行 落地被火绒kill 了 看来不能生成 c的 shellcode 了<br><img src="/images/categories-plugins/Bypasscshellcodebeihuorongkill.png" alt="avatar"> </p><p>注意：经过测试生成的C shellcode type经过base64加密  type类型为cs 可以生成 可执行文件 但是 C  shellcode 生成的可执行文件 执行不能上线   cpp落地就被kill、 。。。。。</p><p><img src="/images/categories-plugins/BypassCshellcodebunengshangxian.png" alt="avatar"> </p></blockquote><h1 id="生成bin形式的shellcode"><a href="#生成bin形式的shellcode" class="headerlink" title="生成bin形式的shellcode"></a>生成bin形式的shellcode</h1><blockquote><p>换为二进制形式的shellcode</p><p><img src="/images/categories-plugins/BypassshengchhengBinshellcode.png" alt="avatar"> </p><p>找到生成的二进制bin 丢到 与工具同一级目录<br><img src="/images/categories-plugins/BypassBinshellcodediudaotongyijimulu.png" alt="avatar"></p></blockquote><blockquote><p>type类型为cpp 落地被火绒kill<br><img src="/images/categories-plugins/BypassBinshellcodeTypecppbeikill.png" alt="avatar"></p><p>类型换为 CS<br><img src="/images/categories-plugins/BypassBinshellcodeTypecsBYPASS.png" alt="avatar"></p></blockquote><blockquote><p>扫描没毛病<br><img src="/images/categories-plugins/BYPASShuorongsaomiaoOK.png" alt="avatar"></p><p>执行 即上线<br><img src="/images/categories-plugins/ByPasshuorongzhixingshangxian.png" alt="avatar"></p><p>命令执行也可以过<br><img src="/images/categories-plugins/BypassHuorongminglingzhixing.png" alt="avatar"></p></blockquote><blockquote><p>但是过不了 360的 云引擎查杀。。。</p><p>VT上可见效果 一般。。<br><img src="/images/categories-plugins/BypassHuoronglookVT.png" alt="avatar"></p><p>别的类型的shell code 暂时没测试 </p><p>至于用的什么方式实现的免杀 我也不太懂 ，小白一枚。。大佬自行分析</p><p>github地址：<a href="https://github.com/aniqfakhrul/Sharperner">https://github.com/aniqfakhrul/Sharperner</a></p></blockquote><h1 id="END"><a href="#END" class="headerlink" title="END"></a>END</h1><blockquote><p>本文为个人学习笔记 随缘更新 ，文章质量不高 大佬勿喷。<br>By___Psych0</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 免杀 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 免杀 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>IDA-Pro篇</title>
       <link href="posts/60493.html"/>
       <url>posts/60493.html</url>
@@ -679,31 +704,6 @@
     
     
     <entry>
-      <title>C/C++入门到入土</title>
-      <link href="posts/56863.html"/>
-      <url>posts/56863.html</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="Hello-world程序"><a href="#Hello-world程序" class="headerlink" title="Hello world程序"></a>Hello world程序</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#include  &lt;stdio.h&gt;&#x2F;&#x2F;包含 标准库的信息</span><br><span class="line">main()   &#x2F;&#x2F;定义名为main的函数，它不接受参数值</span><br><span class="line">&#123;   </span><br><span class="line">&#x2F;*打印hello，world*&#x2F;                                                       &#x2F;&#x2F;main函数下的语句都在花括号下</span><br><span class="line">printf(&quot;hello, world\n&quot;);             &#x2F;&#x2F;main 函数调用库函数printf以显示字符序列；</span><br><span class="line">                                        &#x2F;&#x2F;  \n 代表换行符</span><br><span class="line">                </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">分析：所有的C语言程序都需要包含main()函数，代码从main()函数开始执行</span><br><span class="line">&#x2F;* *&#x2F; 注释符号</span><br><span class="line"></span><br><span class="line">printf()函数用于格式化输出到屏幕，printf()函数在&lt;stdio.h&gt;头部声明</span><br><span class="line"></span><br><span class="line">stido.h 是头文件（标准的输入输出头文件），#include是一个预处理命令，用来引入头文件，当编译器遇到printf()函数时，如果没有找到 stdio.h文件头会发生编译错误</span><br><span class="line"></span><br><span class="line">retun 0；语句用来表示退出程序</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure><p>By___Psych0</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 入门到秃头 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 入门到秃头 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Debian 学习</title>
       <link href="posts/44787.html"/>
       <url>posts/44787.html</url>
@@ -721,6 +721,31 @@
         <tags>
             
             <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>C/C++入门到入土</title>
+      <link href="posts/56863.html"/>
+      <url>posts/56863.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="Hello-world程序"><a href="#Hello-world程序" class="headerlink" title="Hello world程序"></a>Hello world程序</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#include  &lt;stdio.h&gt;&#x2F;&#x2F;包含 标准库的信息</span><br><span class="line">main()   &#x2F;&#x2F;定义名为main的函数，它不接受参数值</span><br><span class="line">&#123;   </span><br><span class="line">&#x2F;*打印hello，world*&#x2F;                                                       &#x2F;&#x2F;main函数下的语句都在花括号下</span><br><span class="line">printf(&quot;hello, world\n&quot;);             &#x2F;&#x2F;main 函数调用库函数printf以显示字符序列；</span><br><span class="line">                                        &#x2F;&#x2F;  \n 代表换行符</span><br><span class="line">                </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">分析：所有的C语言程序都需要包含main()函数，代码从main()函数开始执行</span><br><span class="line">&#x2F;* *&#x2F; 注释符号</span><br><span class="line"></span><br><span class="line">printf()函数用于格式化输出到屏幕，printf()函数在&lt;stdio.h&gt;头部声明</span><br><span class="line"></span><br><span class="line">stido.h 是头文件（标准的输入输出头文件），#include是一个预处理命令，用来引入头文件，当编译器遇到printf()函数时，如果没有找到 stdio.h文件头会发生编译错误</span><br><span class="line"></span><br><span class="line">retun 0；语句用来表示退出程序</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure><p>By___Psych0</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 入门到秃头 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 入门到秃头 </tag>
             
         </tags>
       
@@ -779,31 +804,6 @@
     
     
     <entry>
-      <title>Ubuntu 学习</title>
-      <link href="posts/13687.html"/>
-      <url>posts/13687.html</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>By___Psych0</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Linux </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Linux </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>WEB中间件</title>
       <link href="posts/41384.html"/>
       <url>posts/41384.html</url>
@@ -829,23 +829,23 @@
     
     
     <entry>
-      <title>Tools</title>
-      <link href="posts/8304.html"/>
-      <url>posts/8304.html</url>
+      <title>Ubuntu 学习</title>
+      <link href="posts/13687.html"/>
+      <url>posts/13687.html</url>
       
         <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>By___Psych0</p>]]></content>
       
       
       <categories>
           
-          <category> 工具使用 </category>
+          <category> Linux </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 工具使用 </tag>
+            <tag> Linux </tag>
             
         </tags>
       
@@ -871,6 +871,31 @@
         <tags>
             
             <tag> 入门到秃头 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Tools</title>
+      <link href="posts/8304.html"/>
+      <url>posts/8304.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>By___Psych0</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 工具使用 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 工具使用 </tag>
             
         </tags>
       
